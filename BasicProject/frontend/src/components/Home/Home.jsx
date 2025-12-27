@@ -1,20 +1,15 @@
 import { Link } from "react-router-dom";
 
 import FeatureCard from "../FeatureCard/FeatureCard";
-import { useEffect, useState } from "react";
+
+import useFeatures from "../../Hooks/useFeatures.js";
 
 
 
 
 export default function Home() {
 
-    const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        setTimeout(() => {
-            setLoading(false)
-        }, 4000);
-    })
+  const {loading , activeFeatureId , toggleFeature} = useFeatures();
 
     const features = [
         {
@@ -113,6 +108,9 @@ export default function Home() {
                                 title={feature.title}
                                 image={feature.image}
                                 description={feature.description}
+                                isOpen= {activeFeatureId=== feature.id}
+
+                                onToggle={()=>toggleFeature(feature.id)}
                             />
 
                         ))}
@@ -126,7 +124,7 @@ export default function Home() {
                     Start Your React Journey
                 </h2>
                 <p className="mb-6">
-                    This UI is useless without logic
+                    This Ui  has been Fixed But not Connect with Backend yet
                 </p>
                 <button className="bg-white text-orange-600 px-6 py-3 rounded-lg font-semibold">
                     Get Started
